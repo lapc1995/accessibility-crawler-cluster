@@ -1,0 +1,25 @@
+{
+  "name": "accessibility-crawler-cluster",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@axe-core/puppeteer": "^4.10.1",
+    "archiver": "^7.0.1",
+    "async-mutex": "^0.5.0",
+    "bull": "^4.16.5",
+    "csv-parser": "^3.1.0",
+    "dotenv": "^16.4.7",
+    "jsonfile": "^6.1.0",
+    "psl": "^1.15.0",
+    "puppeteer": "^24.0.0",
+    "puppeteer-cluster": "^0.24.0",
+    "robots-parser": "^3.0.1"
+  }
+}
