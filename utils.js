@@ -438,4 +438,35 @@ export const renameFolder = (oldFolderName, newFolderName) => {
         console.log(error);
     }
 }
+
+export async function divideCSVInChuncks(filename, numberOfChuncks) {
+    let csvData = await readWebsiteCSV(filename);
+    let chunckSize = Math.ceil(csvData.length / numberOfChuncks);
+    let chuncks = [];
+
+    console.log("Chunck size", chunckSize);
+    console.log("Data", csvData.length);
+
+    for (let i = 0; i < numberOfChuncks; i++) {
+        let start = i * chunckSize;
+        let end = start + chunckSize;
+        if(end > csvData.length) {
+            end = csvData.length;
+        }
+        chuncks.push(csvData.slice(start, end));
+    }
+    
+    let chunckIndex = 0;
+    for(let chunck of chuncks) {
+        let csvString = "";
+        let headers = Object.keys(chunck[0]).join(",");
+        csvString += headers + "\n";
+        for(let row of chunck) {
+            let rowString = Object.values(row).join(",");
+            csvString += rowString + "\n";
+        }
+        fs.writeFileSync(`./dividedCSV/${chunckIndex}.csv`, csvString);
+        chunckIndex += 1;
+    }
+}
   
